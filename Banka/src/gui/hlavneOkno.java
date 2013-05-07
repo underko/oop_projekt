@@ -30,10 +30,10 @@ public class hlavneOkno extends JFrame
 	private static JComboBox<String> cmbMiesto, cmbVypis, cmbSimuluj, cmbSimuluj2;
 	private static StyledDocument poleDoc;
 	
-	ImageIcon imgic1;
-	Border ciara;
+	private ImageIcon imgic1;
+	private final Border ciara;
 	
-	String[] strSimuluj = {"Poziar", "Povoden", "Vniknutie"};
+	private final String[] strSimuluj = {"Poziar", "Povoden", "Vniknutie"};
 	String[] strSimuluj2;
 	
 	public hlavneOkno()
@@ -69,12 +69,14 @@ public class hlavneOkno extends JFrame
 		
 		okno1.add(sBar);
 		pole1.setEditable(false);
+		pole1.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
 		
 		btn1.setBounds(5, 250, 100, 30);
+		btn1.setToolTipText("Otvori nove okno na pridavanie/odoberanie prvkov");
 		okno1.add(btn1);
 		
 		btn2.setBounds(5, 285, 100, 30);
-		btn2.setToolTipText("Vypise vsetky senzory");
+		btn2.setToolTipText("Vypise vsetky prvky");
 		okno1.add(btn2);
 		
 		cmbMiesto.setBounds(110, 250, 130, 30);
@@ -86,6 +88,7 @@ public class hlavneOkno extends JFrame
 		okno1.add(cmbVypis);
 		
 		btn3.setBounds(5, 320, 100, 30);
+		btn3.setToolTipText("Spusti simulaciu");
 		okno1.add(btn3);
 		
 		cmbSimuluj.setBounds(110, 320, 130, 30);
@@ -93,6 +96,7 @@ public class hlavneOkno extends JFrame
 		okno1.add(cmbSimuluj);
 		
 		btn4.setBounds(5, 355, 100, 30);
+		btn4.setToolTipText("Nastavi prvky do pociatocneho stavu");
 		okno1.add(btn4);
 				
 		okno1.revalidate();
@@ -127,10 +131,7 @@ public class hlavneOkno extends JFrame
 	public static void setImg(String miesto, String typ)
 	{
 		try {
-			///hlavneOkno.vypis(main_tmp.class.getResource("img/plan_zvyraz_" + miesto + "_" + typ + ".png"));
-			//new ImageIcon(img1.getClass().getResource("yourpackage/mypackage/image.gif"))
 			img1.setIcon( new ImageIcon(ImageIO.read( new File("./img/plan_zvyraz_" + miesto + "_" + typ + ".png"))));
-			//img1.setIcon(new ImageIcon(main_tmp.class.getResource("img/plan_zvyraz_" + miesto + "_" + typ + ".png")));
 		} catch (Exception e) {
 			vypis("chyba obrazku: " + e + "\n");
 		}
@@ -167,19 +168,13 @@ public class hlavneOkno extends JFrame
 				hlavneOkno.vypis("Vypinam vsetky aktivovane alarmy a senzory a opravujem vsetky objekty\n");
 				
 				for (Senzor s: main_tmp.zoznamSenzorov)
-				{
 					 s.setAktivita(false);
-				}
 				 
 				for (Alarm a: main_tmp.zoznamAlarmov)
-				{
 					 a.setAktivita(false);
-				}
 				 
 				for(Objekt o: main_tmp.zoznamObjektov)
-				{
 					o.setStav(true);
-				}
 			}
 		}
 	}
@@ -225,11 +220,8 @@ public class hlavneOkno extends JFrame
 					int i = 0;
 					
 					for (Objekt o: main_tmp.zoznamObjektov)	
-					{
-						strSimuluj2[i] = o.getMeno();
-						i++;
-					}
-					
+						strSimuluj2[i++] = (o.getMeno() + " - " +o.getMiesto());
+						
 					try {
 						okno1.remove(cmbSimuluj2);
 					} catch (Exception e) {

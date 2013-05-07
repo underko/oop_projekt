@@ -191,41 +191,44 @@ public class main_tmp
 	
 	public static void vypisSenzory()
 	{
-		int n = 1;
-		hlavneOkno.vypis("Vypis vsetkych senzorov\n");
+		String nadpis = String.format("Vypis vsetkych senzorov\n%25s%15s%10s\n", "meno", "miesto", "aktivita");;		
+		hlavneOkno.vypis(nadpis + "-----------------------------------------------------------------\n");
 		
-		for (Senzor tmpS: zoznamSenzorov)
+		for (Senzor s: zoznamSenzorov)
 		{
-			hlavneOkno.vypis( n + ": " + tmpS.getMeno() + "\n");
-			hlavneOkno.vypis("miesto: " + tmpS.getMiesto() + " aktivny: " + tmpS.getAktivita() + "\n\n");
-			n++;
+			String riadok = String.format("%25s%15s%10s\n", s.getMeno(), s.getMiesto(), s.getAktivita().toString());
+			hlavneOkno.vypis(riadok);
 		}
+		
+		hlavneOkno.vypis("\n");
 	}
 	
 	public static void vypisAlarmy()
 	{
-		int n = 1;
-		hlavneOkno.vypis("Vypis vsetkych alarmov\n");
+		String nadpis = String.format("Vypis vsetkych alarmov\n%25s%15s%10s\n", "meno", "miesto", "aktivita");;		
+		hlavneOkno.vypis(nadpis + "-----------------------------------------------------------------\n");
 		
-		for (Alarm tmpA: zoznamAlarmov)
+		for (Alarm a: zoznamAlarmov)
 		{
-			hlavneOkno.vypis(n + ": " + tmpA.getMeno() + "\n");
-			hlavneOkno.vypis("miesto: " + tmpA.getMiesto() + " aktivny: " + tmpA.getAktivita() + "\n\n");
-			n++;
+			String riadok = String.format("%25s%15s%10s\n", a.getMeno(), a.getMiesto(), a.getAktivita());
+			hlavneOkno.vypis(riadok);
 		}
+		
+		hlavneOkno.vypis("\n");
 	}
 	
 	public static void vypisObjekty()
 	{
-		int n = 1;
-		hlavneOkno.vypis("Vypis vsetkych objektov\n");
+		String nadpis = String.format("Vypis vsetkych objektov\n%25s%15s%10s\n", "meno", "miesto", "stav");;		
+		hlavneOkno.vypis(nadpis + "-----------------------------------------------------------------\n");
 		
-		for (Objekt tmpO: zoznamObjektov)
+		for (Objekt o: zoznamObjektov)
 		{
-			hlavneOkno.vypis(n + ": " + tmpO.getMeno() + "\n");
-			hlavneOkno.vypis("miesto: " + tmpO.getMiesto() + "\n" + tmpO.getStav() + "\n\n");
-			n++;
+			String riadok = String.format("%25s%15s%10s\n", o.getMeno(), o.getMiesto(), o.getStavBool());
+			hlavneOkno.vypis(riadok);
 		}
+		
+		hlavneOkno.vypis("\n");
 	}
 	
 	public static int ziskajAlarmy(String miesto)

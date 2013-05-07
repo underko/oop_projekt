@@ -29,9 +29,8 @@ public class pridajOkno extends JFrame{
 	private static JLabel labelMeno, labelMiesto, labelTyp, labelVazba;
 	private static JScrollPane sBar;
 	
-	String[] vazba;
-	String[] strTypy = {"Alarm", "Alarm Hlasny", "Alarm Tichy", "Alarm Policajny", "Alarm Hasicky", "Senzor", "Senzor Dymovy", "Senzor Objekt", "Senzor Pohyb", "Senzor Voda", "Objekt"};
-	String[] strVolba = {"senzor/alarm", "senzor/objekt"};
+	private final String[] strTypy = {"Alarm", "Alarm Hlasny", "Alarm Tichy", "Alarm Policajny", "Alarm Hasicky", "Senzor", "Senzor Dymovy", "Senzor Objekt", "Senzor Pohyb", "Senzor Voda", "Objekt"};
+	private final String[] strVolba = {"senzor/alarm", "senzor/objekt"};
 	
 	final static Border obrys = BorderFactory.createLineBorder(Color.black);
 	
@@ -276,7 +275,7 @@ public class pridajOkno extends JFrame{
 		
 		Object o = list.get(0);
 		
-		vypis(o.getClass().getName() + " " + o.getClass().getSuperclass().getName() + " " + o.getClass().getPackage() + "\n");
+		vypis(o.getClass().getName() + " " + o.getClass().getSuperclass().getName() + " " + o.getClass().getPackage() + "\n" + "pocet: " + list.size() + "\n");
 		
 		if (n == 1)
 		{
@@ -333,7 +332,7 @@ public class pridajOkno extends JFrame{
 				vypis(s.getClass().getName() + "\n");
 				if (!s.getClass().getName().contains("SenzorObjekt"))
 					strTmp2[i++] = ((Senzor) s).getMeno();
-			}
+			}	
 			
 			return strTmp2;
 		}
