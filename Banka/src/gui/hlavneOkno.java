@@ -131,7 +131,7 @@ public class hlavneOkno extends JFrame
 	public static void setImg(String miesto, String typ)
 	{
 		try {
-			img1.setIcon( new ImageIcon(ImageIO.read( new File("./img/plan_zvyraz_" + miesto + "_" + typ + ".png"))));
+			img1.setIcon( new ImageIcon(ImageIO.read( new File("img/plan_zvyraz_" + miesto + "_" + typ + ".png"))));
 		} catch (Exception e) {
 			vypis("chyba obrazku: " + e + "\n");
 		}
@@ -220,7 +220,7 @@ public class hlavneOkno extends JFrame
 					int i = 0;
 					
 					for (Objekt o: main_tmp.zoznamObjektov)	
-						strSimuluj2[i++] = (o.getMeno() + " - " +o.getMiesto());
+						strSimuluj2[i++] = (o.getMeno() + "-" +o.getMiesto());
 						
 					try {
 						okno1.remove(cmbSimuluj2);

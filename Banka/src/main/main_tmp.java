@@ -191,7 +191,7 @@ public class main_tmp
 	
 	public static void vypisSenzory()
 	{
-		String nadpis = String.format("Vypis vsetkych senzorov\n%25s%15s%10s\n", "meno", "miesto", "aktivita");;		
+		String nadpis = String.format("Vypis vsetkych senzorov\n%25s%15s%10s\n", "meno", "miesto", "aktivny");;		
 		hlavneOkno.vypis(nadpis + "-----------------------------------------------------------------\n");
 		
 		for (Senzor s: zoznamSenzorov)
@@ -205,7 +205,7 @@ public class main_tmp
 	
 	public static void vypisAlarmy()
 	{
-		String nadpis = String.format("Vypis vsetkych alarmov\n%25s%15s%10s\n", "meno", "miesto", "aktivita");;		
+		String nadpis = String.format("Vypis vsetkych alarmov\n%25s%15s%10s\n", "meno", "miesto", "aktivny");;		
 		hlavneOkno.vypis(nadpis + "-----------------------------------------------------------------\n");
 		
 		for (Alarm a: zoznamAlarmov)
@@ -376,7 +376,7 @@ public class main_tmp
 			}
 		}
 		else
-			pridajOkno.vypis("Prilis kratke meno pre senzor.\n");
+			pridajOkno.vypis("Prilis kratke meno pre objekt.\n");
 	}
 	
 	public static int odstranSenzor(String meno)
@@ -566,10 +566,11 @@ public class main_tmp
 		else if (typ == 2)	//poskodenie objektu
 		{
 			String miesto = new String();
+			String ob = info.split("-")[0];
 			
 			for (Objekt o: main_tmp.zoznamObjektov)
 			{
-				if (o.getMeno() == info)
+				if (o.getMeno().equals(ob))
 				{
 					o.setStav(false);
 					hlavneOkno.vypis(o.getStav() + "\n");

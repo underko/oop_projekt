@@ -272,10 +272,7 @@ public class pridajOkno extends JFrame{
 		String[] strTmp = new String[list.size()];
 		
 		int i = 0;
-		
 		Object o = list.get(0);
-		
-		vypis(o.getClass().getName() + " " + o.getClass().getSuperclass().getName() + " " + o.getClass().getPackage() + "\n" + "pocet: " + list.size() + "\n");
 		
 		if (n == 1)
 		{

@@ -5,7 +5,7 @@ public class AlarmHasici extends Alarm{
 	public String poplach()
 	{
 		if (getAktivita() == true)
-			return ("Kontaktujem hasicov ...\n");
+			return ("Pustam ochranne prvky ...\nKontaktujem hasicov ...\n");
 		
 		return null;
 	}
