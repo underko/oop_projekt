@@ -124,7 +124,7 @@ public class hlavneOkno extends JFrame
 		}
 		catch (BadLocationException e) 
 		{
-			e.printStackTrace();
+			hlavneOkno.vypis("Chyba: " + e + "\n");
 		}
 	}
 	

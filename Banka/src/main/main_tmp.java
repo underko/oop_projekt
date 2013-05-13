@@ -157,46 +157,43 @@ public class main_tmp
 	{
 		for (Senzor tmp: zoznamSenzorov)
 		{
-			if (tmp.getMeno() == s.getMeno())
+			if (tmp.getMeno().equals(s.getMeno()))
 				return false;
 		}
 		
-		if (zoznamSenzorov.add(s) == true)
-			return true;
-		
-		return false;
+		return zoznamSenzorov.add(s);
 	}
 	
 	public static Boolean pridajAlarm(Alarm a)
 	{
 		for (Alarm tmp: zoznamAlarmov)
 		{
-			if (tmp.getMeno() == a.getMeno())
+			if (tmp.getMeno().equals(a.getMeno()))
 				return false;
 		}
 		
-		if (zoznamAlarmov.add(a) == true)
-			return true;
-		
-		return false;
+		return zoznamAlarmov.add(a);
 	}
 	
 	public static Boolean pridajObjekt(Objekt o)
 	{
-		if (zoznamObjektov.add(o) == true)
-			return true;
+		for (Objekt tmp: zoznamObjektov)
+		{
+			if (tmp.getMeno().equals(o.getMeno()))
+				return false;
+		}
 		
-		return false;
+		return zoznamObjektov.add(o);
 	}
 	
 	public static void vypisSenzory()
 	{
-		String nadpis = String.format("Vypis vsetkych senzorov\n%25s%15s%10s\n", "meno", "miesto", "aktivny");;		
+		String nadpis = String.format("Vypis vsetkych senzorov\n%25s%15s%10s%15s\n", "meno", "miesto", "aktivny", "typ");;		
 		hlavneOkno.vypis(nadpis + "-----------------------------------------------------------------\n");
 		
 		for (Senzor s: zoznamSenzorov)
 		{
-			String riadok = String.format("%25s%15s%10s\n", s.getMeno(), s.getMiesto(), s.getAktivita().toString());
+			String riadok = String.format("%25s%15s%10s%15s\n", s.getMeno(), s.getMiesto(), s.getAktivita().toString(), s.getClass().getName().split("\\.")[1]);
 			hlavneOkno.vypis(riadok);
 		}
 		
@@ -205,12 +202,12 @@ public class main_tmp
 	
 	public static void vypisAlarmy()
 	{
-		String nadpis = String.format("Vypis vsetkych alarmov\n%25s%15s%10s\n", "meno", "miesto", "aktivny");;		
+		String nadpis = String.format("Vypis vsetkych alarmov\n%25s%15s%10s%15s\n", "meno", "miesto", "aktivny", "typ");;		
 		hlavneOkno.vypis(nadpis + "-----------------------------------------------------------------\n");
 		
 		for (Alarm a: zoznamAlarmov)
 		{
-			String riadok = String.format("%25s%15s%10s\n", a.getMeno(), a.getMiesto(), a.getAktivita());
+			String riadok = String.format("%25s%15s%10s%15s\n", a.getMeno(), a.getMiesto(), a.getAktivita(), a.getClass().getName().split("\\.")[1]);
 			hlavneOkno.vypis(riadok);
 		}
 		
@@ -219,12 +216,12 @@ public class main_tmp
 	
 	public static void vypisObjekty()
 	{
-		String nadpis = String.format("Vypis vsetkych objektov\n%25s%15s%10s\n", "meno", "miesto", "stav");;		
+		String nadpis = String.format("Vypis vsetkych objektov\n%25s%15s%10s%15s\n", "meno", "miesto", "stav", "typ");;		
 		hlavneOkno.vypis(nadpis + "-----------------------------------------------------------------\n");
 		
 		for (Objekt o: zoznamObjektov)
 		{
-			String riadok = String.format("%25s%15s%10s\n", o.getMeno(), o.getMiesto(), o.getStavBool());
+			String riadok = String.format("%25s%15s%10s%15s\n", o.getMeno(), o.getMiesto(), o.getStavBool(), o.getClass().getName().split("\\.")[1]);
 			hlavneOkno.vypis(riadok);
 		}
 		
@@ -237,7 +234,7 @@ public class main_tmp
 		
 		for(Alarm a: zoznamAlarmov)
 		{
-			if (a.getMiesto() == miesto)
+			if (a.getMiesto().equals(miesto))
 				n++;
 		}
 		
@@ -250,7 +247,7 @@ public class main_tmp
 		
 		for(Senzor s: zoznamSenzorov)
 		{
-			if (s.getMiesto() == miesto)
+			if (s.getMiesto().equals(miesto))
 				n++;
 		}
 		
@@ -263,7 +260,7 @@ public class main_tmp
 		
 		for(Objekt o: zoznamObjektov)
 		{
-			if (o.getMiesto() == miesto)
+			if (o.getMiesto().equals(miesto))
 				n++;
 		}
 		
@@ -301,7 +298,7 @@ public class main_tmp
 			s.setMiesto(miesto);
 			s.setAktivita(false);
 		
-			if (main_tmp.pridajSenzor(s) == false)
+			if (!main_tmp.pridajSenzor(s))
 				pridajOkno.vypis("nepodarilo sa vytvorit objekt :(");
 			else
 			{
@@ -311,6 +308,8 @@ public class main_tmp
 		}
 		else
 			pridajOkno.vypis("Prilis kratke meno pre senzor.\n");
+		
+		return;
 	}
 	
 	public static void vytvorAlarm(String meno, String miesto, int typ)
@@ -345,7 +344,7 @@ public class main_tmp
 			a.setMiesto(miesto);
 			a.setAktivita(false);
 		
-			if (main_tmp.pridajAlarm(a) == false)
+			if (!main_tmp.pridajAlarm(a))
 				pridajOkno.vypis("nepodarilo sa vytvorit objekt :(");
 			else
 			{
@@ -355,6 +354,8 @@ public class main_tmp
 		}
 		else
 			pridajOkno.vypis("Prilis kratke meno pre alarm.\n");
+		
+		return;
 	}
 	
 	public static void vytvorObjekt(String meno, String miesto, int typ)
@@ -367,7 +368,7 @@ public class main_tmp
 			o.setMiesto(miesto);
 			o.setStav(true);
 		
-			if (main_tmp.pridajObjekt(o) == false)
+			if (!main_tmp.pridajObjekt(o))
 				pridajOkno.vypis("nepodarilo sa vytvorit objekt :(");
 			else
 			{
@@ -377,6 +378,8 @@ public class main_tmp
 		}
 		else
 			pridajOkno.vypis("Prilis kratke meno pre objekt.\n");
+		
+		return;
 	}
 	
 	public static int odstranSenzor(String meno)
