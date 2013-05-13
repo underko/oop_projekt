@@ -25,12 +25,9 @@ public class Senzor {
 		return meno;
 	}
 	
-	public void setMeno(String m)
+	public void setMeno(String meno)
 	{
-		if (m.length() > 0)
-			this.meno = m;
-		else
-			pridajOkno.vypis("zle meno");
+		this.meno = meno;
 	}
 
 	public String getMiesto()
@@ -40,10 +37,7 @@ public class Senzor {
 	
 	public void setMiesto(String miesto)
 	{
-		if (miesto.length() > 0)
-			this.miesto = miesto;
-		else
-			System.out.println("err");
+		this.miesto = miesto;
 	}
 	
 	public Boolean getAktivita()
@@ -66,10 +60,9 @@ public class Senzor {
 		if (aktivita == true && zoznamApodS != null)
 		{
 			hlavneOkno.vypis("Aktivujem prislusne alarmy !\n");
+			
 			for (Alarm a: zoznamApodS)
-			{
 				a.setAktivita(true);	
-			}
 		}
 	}
 	

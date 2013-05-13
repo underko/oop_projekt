@@ -299,7 +299,7 @@ public class main_tmp
 			s.setAktivita(false);
 		
 			if (!main_tmp.pridajSenzor(s))
-				pridajOkno.vypis("nepodarilo sa vytvorit objekt :(");
+				pridajOkno.vypis("Meno senozoru sa uz pouziva.\n");
 			else
 			{
 				pridajOkno.vypis("Podarilo sa vytvorit novy " + pridajOkno.getCmbTyp().getSelectedItem().toString() + "!\nMeno: " + s.getMeno() + "\nUmiestnenie: " + s.getMiesto() + "\n");
@@ -345,7 +345,7 @@ public class main_tmp
 			a.setAktivita(false);
 		
 			if (!main_tmp.pridajAlarm(a))
-				pridajOkno.vypis("nepodarilo sa vytvorit objekt :(");
+				pridajOkno.vypis("Meno alarmu sa uz pouziva\n");
 			else
 			{
 				pridajOkno.vypis("Podarilo sa vytvorit novy " + pridajOkno.getCmbTyp().getSelectedItem().toString() + "!\nMeno: " + a.getMeno() + "\nUmiestnenie: " + a.getMiesto() + "\n");
@@ -369,7 +369,7 @@ public class main_tmp
 			o.setStav(true);
 		
 			if (!main_tmp.pridajObjekt(o))
-				pridajOkno.vypis("nepodarilo sa vytvorit objekt :(");
+				pridajOkno.vypis("Meno objektu sa uz pouziva\n");
 			else
 			{
 				pridajOkno.vypis("Podarilo sa vytvorit novy " + pridajOkno.getCmbTyp().getSelectedItem().toString() + "!\nMeno: " + o.getMeno() + "\nUmiestnenie: " + o.getMiesto() + "\n");
